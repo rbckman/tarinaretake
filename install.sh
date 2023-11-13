@@ -31,7 +31,7 @@ cat <<'EOF'
 EOF
 sleep 1
 
-if grep -q -F '#tarina-rpi-configuration-1.0' /boot/config.txt
+if grep -q -F '#tarinaretake-rpi-configuration-1.0' /boot/config.txt
 then
 echo "screen drivers found! remove them in /boot/config.txt"
 else
@@ -43,7 +43,7 @@ break
 done
 fi
 echo "setting up system for filmmaking flow..."
-echo "if something goes wrong please submit bug to https://github.com/rbckman/tarina"
+echo "if something goes wrong please submit bug to https://github.com/rbckman/tarinaretake"
 sleep 2
 version="$(lsb_release -c -s)"
 if [ "$version" = "buster" ]
@@ -73,7 +73,7 @@ sudo pip3 install RPi.GPIO
 echo "installing picamerax with lens shading correction..."
 #sudo pip3 --no-cache-dir install https://github.com/chrisruk/picamera/archive/hq-camera-new-framerates.zip --upgrade
 sudo pip3 install --upgrade picamerax
-echo "installing web.py for the tarina webserver..."
+echo "installing web.py for the tarinaretake webserver..."
 sudo pip3 install web.py==0.61
 
 if [ "$screen" = "ugeek-hdtft" ]
@@ -83,7 +83,7 @@ echo "Tarina configuration seems to be in order in /boot/config.txt"
 echo "Adding to /boot/config.txt"
 cat <<'EOF' >> /boot/config.txt
 #-----Tarina configuration starts here-------
-#tarina-rpi-configuration-ugeek-1.0
+#tarinaretake-rpi-configuration-ugeek-1.0
 #Rpi-hd-tft
 dtoverlay=dpi18
 overscan_left=0
@@ -129,7 +129,7 @@ echo "Tarina configuration seems to be in order in /boot/config.txt"
 echo "Adding to /boot/config.txt"
 cat <<'EOF' >> /boot/config.txt
 #-----Tarina configuration starts here-------
-#tarina-rpi-configuration-hyperpixel-1.0
+#tarinaretake-rpi-configuration-hyperpixel-1.0
 #hyperpixel
 start_x=1
 gpu_mem=256
@@ -167,12 +167,12 @@ hdmi_timings=480 0 10 16 59 800 0 15 113 15 0 0 0 60 0 32000000 6
 #--------Tarina configuration end here---------
 EOF
 else
-echo "screen driver already there, to change it remove tarina config in /boot/config.txt"
+echo "screen driver already there, to change it remove tarinaretake config in /boot/config.txt"
 fi
 
-echo "Change hostname to tarina"
+echo "Change hostname to tarinaretake"
 cat <<'EOF' > /etc/hostname
-tarina
+tarinaretake
 EOF
 
 cat <<'EOF' > /etc/hosts
@@ -181,7 +181,7 @@ cat <<'EOF' > /etc/hosts
 ff02::1		ip6-allnodes
 ff02::2		ip6-allrouters
 
-127.0.1.1	tarina
+127.0.1.1	tarinaretake
 EOF
 
 echo "consoleblank=0 logo.nologo loglevel=0"
@@ -212,18 +212,18 @@ EOF
 fi
 
 echo "Automatically boot to Tarina"
-echo "creating a tarina.service file"
-cat <<'EOF' > /etc/systemd/system/tarina.service
+echo "creating a tarinaretake.service file"
+cat <<'EOF' > /etc/systemd/system/tarinaretake.service
 [Unit]
-Description=tarina
+Description=tarinaretake
 After=getty.target
 Conflicts=getty@tty1.service
-#DefaultDependencies=false
+DefaultDependencies=false
 
 [Service]
 Type=simple
 RemainAfterExit=yes
-ExecStart=/usr/bin/python3 /home/pi/tarina/tarina.py default
+ExecStart=/usr/bin/python3 /home/pi/tarinaretake/tarinaretake.py default
 User=pi
 Restart=on-failure
 StandardInput=tty-force
@@ -251,20 +251,20 @@ EOF
 loginctl enable-linger
 loginctl enable-linger pi
 
-chmod +x /home/pi/tarina/tarina.py
-systemctl enable tarina.service
+chmod +x /home/pi/tarinaretake/tarinaretake.py
+systemctl enable tarinaretake.service
 systemctl daemon-reload
 echo "systemd configuration done!"
 
-echo "Installing tarina apache server configuration"
-cp extras/tarina.conf /etc/apache2/sites-available/
-#ln -s -t /var/www/ /home/pi/tarina/srv/
+echo "Installing tarinaretake apache server configuration"
+cp extras/tarinaretake.conf /etc/apache2/sites-available/
+#ln -s -t /var/www/ /home/pi/tarinaretake/srv/
 a2dissite 000-default.conf
-a2ensite tarina.conf
-echo "configure srv path to /home/pi/tarina/srv"
+a2ensite tarinaretake.conf
+echo "configure srv path to /home/pi/tarinaretake/srv"
 
 cat <<'EOF' >> /etc/apache2/apache2.conf
-<Directory /home/pi/tarina/srv>
+<Directory /home/pi/tarinaretake/srv>
 	Options Indexes FollowSymLinks
 	AllowOverride None
 	Require all granted
