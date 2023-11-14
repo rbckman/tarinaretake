@@ -4,7 +4,7 @@ The Filmmaking Device
 
 Let's introduce this thing with a thing it made, [a film on youtube](https://youtu.be/Yl2oAxMtDV0?si=lXOYTpkJi1YFuO2u) !
 
-![Two buddies](docs/tarina-promo.jpg)
+![Two buddies](https://github.com/rbckman/tarina/tree/master/docs/tarina-promo.jpg)
 
 Hollywood in your palms
 --------------------------
@@ -30,7 +30,7 @@ Hardware
 The parts have been chosen on the basis of features, quality, openness, availabilty and price. One of the key ideas of the project is to have a camera that could be upgraded or repaired by the fact that you easily just switch a component. The casis of the camera is 3d printable with a flipping gonzo style 180 shooting mode, please take a look [here to get the picture](https://github.com/rbckman/tarina/tree/master/3d)
 
 ### Buttons
-![Buttons](docs/buttons.png)
+![Buttons](https://github.com/rbckman/tarina/tree/master/docs/buttons.png)
 
 Here's the main components: 
 
@@ -42,7 +42,7 @@ Here's the main components:
 [Type-C 5v 2A 3.7V Li-ion battery charger booster module](https://www.ebay.com/itm/Type-C-USB-5V-2A-3-7V-18650-Lithium-Li-ion-Battery-Charging-Board-Charger-Module/383717339632?var=652109038482)
 [Buttons](http://www.ebay.com/itm/151723036469?_trksid=p2057872.m2749.l2649&ssPageName=STRK%3AMEBIDX%3AIT) connected to a [MCP23017-E/SP DIP-28 16 Bit I / O Expander I2C](http://www.ebay.com/sch/sis.html?_nkw=5Pcs+MCP23017+E+SP+DIP+28+16+Bit+I+O+Expander+I2C+TOP+GM&_trksid=p2047675.m4100)
 
-Check [MANUAL](docs/tarina-manual.md) for complete part list & build instructions
+Check [MANUAL](https://github.com/rbckman/tarina/tree/master/docs/tarina-manual.md) for complete part list & build instructions
 
 [Ready to print 3d designs](https://github.com/rbckman/tarina/tree/master/3d)
 
@@ -57,15 +57,15 @@ Go to /home/pi/ folder
 ```
 cd /home/pi
 ```
-Git clone tarina and then run install script with sudo:
+Git clone Tarina Retake and then run install script with sudo:
 ```
-git clone https://github.com/rbckman/tarina.git
-cd tarina
+git clone https://github.com/rbckman/tarinaretake.git
+cd tarinaretake
 sudo ./install.sh
 ```
 You'r ready to rumble:
 ```
-python3 tarina.py
+python3 tarinaretake.py
 ```
 
 Why
@@ -92,7 +92,7 @@ This whole project has only been possible because of the people behind the free 
 [Gnu](https://gnu.org), [Linux](https://github.com/torvalds/linux), [Debian](https://debian.org), [Raspberry Pi](https://raspberrypi.org), 
 [Python programming language](https://python.org), Dave Jones's [Picamera python module](https://github.com/waveform80/picamera), rwb27 for lens shading correction! Check out the 3d printable microscope [Openflexure](https://github.com/rwb27/openflexure_microscope), [FFmpeg](https://ffmpeg.org/), [Libav-tools](https://libav.org/), [GPac library with MP4Box](https://gpac.wp.imt.fr/mp4box/), [Blender](http://blender.org), [aplay the awesome wav player/recorder with VU meter](http://alsa.opensrc.org/Aplay), [Popcornmix's Omxplayer](https://github.com/popcornmix/omxplayer), [Will Price's Python-omxplayer-wrapper](https://github.com/willprice/python-omxplayer-wrapper), [SoX - Sound eXchange](http://sox.sourceforge.net/), [The Dispmanx library](https://github.com/raspberrypi/userland/tree/master/host_applications/linux/apps/hello_pi), [Blessed](http://blessed.readthedocs.io/),  [web.py](http://webpy.org), [Tokland's youtube-upload](https://github.com/tokland/youtube-upload)
 
-![Tarina and Leon](docs/tarina-filming-01.jpg)
+![Tarina and Leon](https://github.com/rbckman/tarina/tree/master/docs/tarina-filming-01.jpg)
 
 Some films made with Tarina
 ----------------------
