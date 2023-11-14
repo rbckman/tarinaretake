@@ -2244,7 +2244,7 @@ def update(tarinaversion, tarinavername):
     time.sleep(2)
     logger.info('Checking for updates...')
     try:
-        run_command('wget -N https://raw.githubusercontent.com/rbckman/tarina/master/VERSION -P /tmp/')
+        run_command('wget -N https://raw.githubusercontent.com/rbckman/tarinaretake/master/VERSION -P /tmp/')
     except:
         logger.info('Sorry buddy, no internet connection')
         time.sleep(2)
@@ -2293,7 +2293,7 @@ def getconfig(camera):
     filmfolder=''
     version = camera.revision
     home = os.path.expanduser('~')
-    configfile = home + '/.tarina/config.ini'
+    configfile = home + '/.tarinaretake/config.ini'
     configdir = os.path.dirname(configfile)
     if not os.path.isdir(configdir):
         os.makedirs(configdir)
@@ -4328,7 +4328,7 @@ def copytousb(filmfolder):
         if usbconnected == True:
             #Copy new files to usb device
             try:
-                os.makedirs('/media/usb0/tarinafilms/')
+                os.makedirs('/media/usb0/tarinaretakefilms/')
             except:
                 pass
             try:
@@ -4342,7 +4342,7 @@ def copytousb(filmfolder):
             for filmname in films:
                 #check filmhash
                 filmname = filmname[0]
-                usbpath = '/media/usb0/tarinafilms/'+filmname
+                usbpath = '/media/usb0/tarinaretakefilms/'+filmname
                 usbfilmhash = ''
                 filmhash = ''
                 while True:
@@ -4840,7 +4840,7 @@ def tarinaserver(state):
             run_command('sudo systemctl start apache2')
             return 'on'
         except:
-            writemessage("could not run tarina server")
+            writemessage("could not run tarinaretake server")
             time.sleep(2)
             return 'off'
     if state == False:
