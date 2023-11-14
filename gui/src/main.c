@@ -125,8 +125,6 @@ int main(void)
 
     graphics_display_resource(img, 0, LAYER, 0, 0, GRAPHICS_RESOURCE_WIDTH, GRAPHICS_RESOURCE_HEIGHT, VC_DISPMAN_ROT0, 1);
 
-    uint32_t text_size = 15;
-    uint32_t text_size_selected = 16;
     FILE * fp;
     FILE * fp2;
     FILE * fp3;
@@ -148,6 +146,8 @@ int main(void)
     uint32_t y_offset5 = 421;
     uint32_t y_offset6 = 442; 
     uint32_t y_offset = 466;
+    uint32_t text_size = 15;
+    uint32_t text_size_selected = 16;
     int space = 10;
     int morespace = 12;
     int rectime = 700;
@@ -157,6 +157,7 @@ int main(void)
     int row3 = 0;
     int row4 = 0;
     int row5 = 0;
+    int moverow = 0;
     if (width == 1920){
         y_offset2 = 5;
         y_offset3 = 45;
@@ -170,9 +171,19 @@ int main(void)
         space = 23;
         morespace = 27;
     }
-    else {
-        space = 10;
-        morespace = 12;
+    if (width < 799){
+        y_offset2 = 15;
+        y_offset3 = 27;
+        y_offset4 = 40;
+        y_offset5 = 433;
+        y_offset6 = 445;
+        y_offset = 457;
+        rectime = 600;
+        text_size = 11;
+        text_size_selected = 11;
+        space = 7;
+        morespace = 10;
+        moverow = 20;
     }
     while (1) {
         // char ch;
@@ -190,11 +201,11 @@ int main(void)
             strcpy(oldread, newread);
             //const char *text = "Never give up on your dreams";
             color = 3;
-            row1 = 0;
-            row2 = 0;
-            row3 = 0;
-            row4 = 0;
-            row5 = 0;
+            row1 = 0+moverow;
+            row2 = 0+moverow;
+            row3 = 0+moverow;
+            row4 = 0+moverow;
+            row5 = 0+moverow;
             graphics_resource_fill(img, 0, 0, width, height, GRAPHICS_RGBA32(0,0,0,0x00));
             // blue, at the top (y=40)
             // selected 0 1 2 3 4 5 6 7 8
@@ -295,7 +306,7 @@ int main(void)
             vucolor = 2;
         if (vol >= 99)
             vucolor = 3;
-        render_subtitle(img, vumeter, text_size, text_size_selected , 0, y_offset, vucolor);
+        render_subtitle(img, vumeter, text_size, text_size_selected , moverow, y_offset, vucolor);
         graphics_update_displayed_resource(img, 0, 0, 0, 0);
         usleep(20000);
     }
