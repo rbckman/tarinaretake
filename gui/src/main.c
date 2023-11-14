@@ -172,9 +172,9 @@ int main(void)
         morespace = 27;
     }
     if (width < 799){
-        y_offset2 = 15;
-        y_offset3 = 27;
-        y_offset4 = 40;
+        y_offset2 = 16;
+        y_offset3 = 30;
+        y_offset4 = 43;
         y_offset5 = 433;
         y_offset6 = 445;
         y_offset = 457;
@@ -239,7 +239,7 @@ int main(void)
                         header = 1;
                     if (selected == 420){
                         if (linenr == 1)
-                            render_subtitle(img, line, text_size, text_size_selected, 0, y_offset2, 5);
+                            render_subtitle(img, line, text_size, text_size_selected, moverow, y_offset2, 5);
                         if (linenr > 1) {
                             render_subtitle(img, line, text_size, text_size_selected, row1, y_offset3, 5);
                             row1 += read * space + morespace;
@@ -276,7 +276,7 @@ int main(void)
                     }
                     else { // header menu
                         if (linenr == 1+menuadd)
-                            render_subtitle(img, line, text_size, text_size_selected, 0, y_offset2, 5);
+                            render_subtitle(img, line, text_size, text_size_selected, moverow, y_offset2, 5);
                         if (linenr > 1+menuadd){
                             render_subtitle(img, line, text_size, text_size_selected, row1, y_offset3, color);
                             row1 += read * space + morespace;
