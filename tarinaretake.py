@@ -211,6 +211,9 @@ def main():
     #TURN ON WIFI AND TARINA SERVER
     serverstate = 'on'
     wifistate = 'on'
+    if os.path.isdir(tarinafolder+'/srv/sessions') == False:
+        os.makedirs(tarinafolder+'/srv/sessions')
+        os.system('chown www-data '+tarinafolder+'/srv/sessions')
     #serverstate = tarinaserver(False)
     #TO_BE_OR_NOT_TO_BE 
     foldername = filmfolder + filmname + '/' + 'scene' + str(scene).zfill(3) +'/shot' + str(shot).zfill(3) + '/'
