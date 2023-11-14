@@ -126,6 +126,7 @@ def main():
     showmenu_settings = True
     showhelp = False
     overlay = None
+    overlay2 = None
     underlay = None
     reclenght = 0
     t = 0
@@ -323,11 +324,11 @@ def main():
             elif pressed == 'showhelp':
                 vumetermessage('Button layout')
                 if showhelp == False:
-                    overlay = removeimage(camera, overlay)
-                    overlay = displayimage(camera, tarinafolder+'/extras/buttons.png', overlay, 4)
+                    overlay2 = removeimage(camera, overlay2)
+                    overlay2 = displayimage(camera, tarinafolder+'/extras/buttons.png', overlay, 4)
                     showhelp = True
                 elif showhelp == True:
-                    overlay = removeimage(camera, overlay)
+                    overlay2 = removeimage(camera, overlay2)
                     updatethumb =  True
                     showhelp = False
                 #while holdbutton == 'showhelp' or pressed == 'H':
