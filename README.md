@@ -4,7 +4,7 @@ The Filmmaking Device
 
 Let's introduce this thing with a thing it made, [a film on youtube](https://youtu.be/Yl2oAxMtDV0?si=lXOYTpkJi1YFuO2u) !
 
-![Two buddies](https://github.com/rbckman/tarina/tree/master/docs/tarina-promo.jpg)
+![Two buddies](https://github.com/rbckman/tarina/tree/master/docs/tarina-promo.jpg?raw=true)
 
 Hollywood in your palms
 --------------------------
