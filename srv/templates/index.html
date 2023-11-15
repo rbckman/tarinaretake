@@ -25,14 +25,18 @@ $$(document).on('keydown', function (event) {
 });
 </script>
 connected 
+<pre>use keyboard to control</pre>
 $for i in cameras:
     $i
 <br>
+<div id="controls" style="display:none"> >
 <a id="VIEW" href="/?func=view">VIEW</a> <a id="UP" href="/?func=up">__UP__</a> <a id="RECORD" href="/?func=record">RECORD</a><br>
 <a id="LEFT" href="/?func=left">LEFT</a> <a id="MIDDLE" href="/?func=middle">MIDDLE</a> <a id="RIGHT" href="/?func=right">RIGHT</a><br>
 <a id="DELETE" href="/?func=delete">DELETE</a> <a id="DOWN" href="/?func=down">DOWN</a> <a id="RETAKE" href="/?func=retake">RETAKE</a><br>
 <a href="/?func=picture">PICTURE</a>
 <a href="/?func=search">SEARCH</a>
+</div>
+
 <div id="menu" style="margin:0 auto; width:99%">
 $vumetermessage
 <br>
@@ -55,11 +59,11 @@ $ take_link="static/Videos/" + name + "/scene" + str(scene).zfill(3) + "/shot" +
 $ scene_link="static/Videos/" + name + "/scene" + str(scene).zfill(3) + "/scene.mp4"
 $ film_link="static/Videos/" + name + "/" +name+ ".mp4"
 $if selected == 0:
-    <a href='$film_link'><img width="99%" src="$picture?$randhash"/></a><br>
+    <a href='$film_link'><img width="80%" src="$picture?$randhash"/></a><br>
 $elif selected == 1:
-    <a href='$scene_link'><img width="99%" src="$picture?$randhash"/></a><br>
+    <a href='$scene_link'><img width="80%" src="$picture?$randhash"/></a><br>
 $elif selected > 1:
-    <a href='$take_link'><img width="99%" src="$picture?$randhash"/></a><br>
+    <a href='$take_link'><img width="80%" src="$picture?$randhash"/></a><br>
 <br>
 $if func=='show_all_films':
     <h1>FILMS</h1>
