@@ -155,7 +155,7 @@ class index:
                 renderedfilms.append(f[0])
             else:
                 unrenderedfilms.append(f[0])
-        i=web.input(func=None,selected=None)
+        i=web.input(func=None,selected=None,retake=None)
         if i.selected != None:
             sendtocamera(ip,port,'SELECTED:'+i.selected)
         if i.func == 'search':
@@ -168,7 +168,7 @@ class index:
         elif i.func == 'record':
             sendtocamera(ip,port,'REC')
         elif i.func == 'retake':
-            sendtocamera(ip,port,'RETAKE')
+            print(i.func+'fuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
         elif i.func == 'up':
             sendtocamera(ip,port,'UP')
         elif i.func == 'down':
@@ -187,7 +187,7 @@ class index:
             sendtocamera(ip,port,'PICTURE')
             session.randhash = hashlib.md5(str(random.getrandbits(256)).encode('utf-8')).hexdigest()
             session.reload = 1
-        if i.func != None:
+        if i.func != None or i.retake != None:
             session.reload = 1
             raise web.seeother('/')
         time.sleep(1)
@@ -217,6 +217,8 @@ class index:
         except:
             take=1
             session.reload = 0
+        if i.func == 'retake': 
+            sendtocamera(ip,port,'RETAKE:'+shot)
         thumb="/static/Videos/"+name+"/scene"+str(scene).zfill(3)+"/shot"+str(shot).zfill(3)+"/picture"+str(take).zfill(3)+".jpeg"
         print(thumb)
         if os.path.isfile(basedir+thumb) == False:

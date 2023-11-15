@@ -2,17 +2,35 @@ $def with (renderedfilms, unrenderedfilms, cameras, menu, selected,name,scene,sh
 $var renderedfilms = renderedfilms
 $var unrenderedfilms = unrenderedfilms
 <script>
-function timedRefresh(timeoutPeriod) {
-    setTimeout("location.reload(true);",timeoutPeriod);
-}
+$$(document).on('keydown', function (event) {
+    if (event.which == 37) {
+        $$('#LEFT').trigger('click');
+    } else if (event.which == 39) {
+        $$('#RIGHT').trigger('click');
+    } else if (event.which == 38) {
+        $$('#UP').trigger('click');
+    } else if (event.which == 40) {
+        $$('#DOWN').trigger('click');
+    } else if (event.which == 33) {
+        $$('#RECORD').trigger('click');
+    } else if (event.which == 34) {
+        $$('#RETAKE').trigger('click');
+    } else if (event.which == 9) {
+        $$('#VIEW').trigger('click');
+    } else if (event.which == 46) {
+        $$('#DELETE').trigger('click');
+    } else if (event.which == 13) {
+        $$('#MIDDLE').trigger('click');
+    }
+});
 </script>
 connected 
 $for i in cameras:
     $i
 <br>
-<a href="/?func=view">VIEW</a> <a href="/?func=up">__UP__</a> <a href="/?func=record">RECORD</a><br>
-<a href="/?func=left">LEFT</a> <a href="/?func=middle">MIDDLE</a> <a href="/?func=right">RIGHT</a><br>
-<a href="/?func=delete">DELETE</a> <a href="/?func=down">DOWN</a> <a href="/?func=retake">RETAKE</a><br>
+<a id="VIEW" href="/?func=view">VIEW</a> <a id="UP" href="/?func=up">__UP__</a> <a id="RECORD" href="/?func=record">RECORD</a><br>
+<a id="LEFT" href="/?func=left">LEFT</a> <a id="MIDDLE" href="/?func=middle">MIDDLE</a> <a id="RIGHT" href="/?func=right">RIGHT</a><br>
+<a id="DELETE" href="/?func=delete">DELETE</a> <a id="DOWN" href="/?func=down">DOWN</a> <a id="RETAKE" href="/?func=retake">RETAKE</a><br>
 <a href="/?func=picture">PICTURE</a>
 <a href="/?func=search">SEARCH</a>
 <div id="menu" style="margin:0 auto; width:99%">
@@ -58,4 +76,16 @@ $if func=='show_all_films':
         <h2>$i </h2>
         <p>Copy project to your destination:</p>
         <pre>scp -r pi@tarina.local:~/Videos/$i ~/films/$i</pre>
+
+<script>
+$$('#LEFT').on('click', function () { window.open('?func=left',"_self");return false; });
+$$('#RIGHT').on('click', function () { window.open('?func=right',"_self");return false; });
+$$('#DOWN').on('click', function () { window.open('?func=down',"_self");return false; });
+$$('#UP').on('click', function () { window.open('?func=up',"_self");return false; });
+$$('#RECORD').on('click', function () { window.open('?func=record',"_self");return false; });
+$$('#RETAKE').on('click', function () { window.open('?func=retake',"_self");return false; });
+$$('#DELETE').on('click', function () { window.open('?func=delete',"_self");return false; });
+$$('#VIEW').on('click', function () { window.open('?func=view',"_self");return false; });
+$$('#MIDDLE').on('click', function () { window.open('?func=middle',"_self");return false; });
+</script>
 
