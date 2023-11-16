@@ -403,19 +403,20 @@ def main():
                     filename = 'take' + str(take).zfill(3)
                     #compileshot(foldername + filename,filmfolder,filmname)
                     renderfilename, newaudiomix = rendershot(filmfolder, filmname, foldername+filename, scene, shot)
-                    trim = playdub(filmname,foldername + filename, 'shot')
-                    if trim:
-                        take = counttakes(filmname, filmfolder, scene, shot)+1
-                        trim_filename = foldername + 'take' + str(take).zfill(3)
-                        videotrim(foldername + filename, trim_filename, trim[0], trim[1])
-                        if os.path.exists(foldername+'dub') == True:
-                            print('trim dubs here')
-                    imagename = foldername + filename + '.jpeg'
-                    overlay = displayimage(camera, imagename, overlay, 3)
-                    camera.start_preview()
-                else:
-                    vumetermessage('nothing here! hit rec!')
-                rendermenu = True
+                    if renderfilename != '':
+                        trim = playdub(filmname,foldername + filename, 'shot')
+                        if trim:
+                            take = counttakes(filmname, filmfolder, scene, shot)+1
+                            trim_filename = foldername + 'take' + str(take).zfill(3)
+                            videotrim(foldername + filename, trim_filename, trim[0], trim[1])
+                            if os.path.exists(foldername+'dub') == True:
+                                print('trim dubs here')
+                        imagename = foldername + filename + '.jpeg'
+                        overlay = displayimage(camera, imagename, overlay, 3)
+                        camera.start_preview()
+                    else:
+                        vumetermessage('nothing here! hit rec!')
+                    rendermenu = True
             #DUB SHOT
             elif pressed == 'middle' and menu[selected] == 'SHOT:' and recordable == False:
                 newdub = clipsettings(filmfolder, filmname, scene, shot, take, plughw)
@@ -3289,13 +3290,19 @@ def rendershot(filmfolder, filmname, renderfilename, scene, shot):
     oldvideohash = ''
     #take = counttakes(filmname, filmfolder, scene, shot)
     #renderfilename = filmfolder + filmname + '/scene' + str(scene).zfill(3) + '/shot' + str(shot).zfill(3) + '/take' + str(take).zfill(3) 
+    #return if no file
     # Video Hash
     #if something shutdown in middle of process
     if os.path.isfile(renderfilename + '_tmp.mp4') == True:
         os.system('cp ' + renderfilename + '_tmp.mp4 ' + renderfilename + '.mp4')
-    compileshot(renderfilename,filmfolder,filmname)
-    videohash = videohash + str(int(countsize(renderfilename + '.mp4')))
-    print('Videohash of shot is: ' + videohash)
+    if os.path.isfile(renderfilename + '.h264') == True:
+        compileshot(renderfilename,filmfolder,filmname)
+    if os.path.isfile(renderfilename + '.mp4') == True:
+        videohash = videohash + str(int(countsize(renderfilename + '.mp4')))
+        print('Videohash of shot is: ' + videohash)
+    else:
+        vumetermessage('Nothing here to play hit record')
+        return '', ''
     #if os.path.isfile(renderfilename + '.h264') and os.path.isfile(renderfilename + '.mp4'):
     #    os.system('rm ' + renderfilename + '.h264 ')
     scenedir = filmfolder + filmname + '/scene' + str(scene).zfill(3) + '/shot' + str(shot).zfill(3) + '/'
