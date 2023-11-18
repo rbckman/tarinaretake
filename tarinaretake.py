@@ -2397,6 +2397,7 @@ def cleanupdisk(filmname, filmfolder):
         else:
             print("NOPE, no link to origin")
             print(i)
+            time.sleep(2)
             #os.system('rm ' + i)
     #for i in filesfolder:
     #    if i in alloriginfiles:
@@ -4834,7 +4835,8 @@ def startcamera(lens, fps):
     else:
         camera.framerate = fps
     camera.crop = (0, 0, 1.0, 1.0)
-    camera.video_stabilization = True
+    #stabilization does not work in firmware
+    #camera.video_stabilization = True
     camera.led = False
     #lens_shading_table = np.zeros(camera._lens_shading_table_shape(), dtype=np.uint8) + 32
     #camera.lens_shading_table = lens_shading_table
